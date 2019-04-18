@@ -2,9 +2,9 @@
 # configuration
 SERVER_NAME=""
 
-TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
+TIMESTAMP=$(date +%Y%m%d)
 
-BACKUPS_DIR="/backups"
+BACKUPS_DIR="/home/ubuntu/mongodbbackup"
 
 DB_USER=""
 
@@ -27,4 +27,4 @@ mongodump --authenticationDatabase $AUTH_DB --username $DB_USER --password $DB_P
 zip -r $ZIP_FOLDER_NAME $OUT_FOLDER_NAME -q
 rm -rf $OUT_FOLDER_NAME
 
-/usr/sbin/rclone move $ZIP_FOLDER_NAME "remote:$TARGET_FOLDER" >> /var/log/rclone.log 2>&1
+rclone move $ZIP_FOLDER_NAME "remote:$TARGET_FOLDER"
